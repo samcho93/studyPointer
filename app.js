@@ -588,9 +588,48 @@ class SlideShow {
 
     slideConcept(idx) {
         const lec = lectures[idx];
+        const parser = new DOMParser();
+        const doc = parser.parseFromString('<div>' + lec.content + '</div>', 'text/html');
+        const root = doc.body.firstChild;
+        const h4s = root.querySelectorAll('h4');
+        let bullets = '';
+        h4s.forEach((h4, bi) => {
+            const title = h4.textContent;
+            let desc = '';
+            let next = h4.nextElementSibling;
+            if (next) {
+                if (next.tagName === 'P') {
+                    desc = this.truncText(next.textContent, 100);
+                } else if (next.tagName === 'UL') {
+                    const lis = [...next.querySelectorAll('li')].slice(0, 4);
+                    desc = lis.map(li => {
+                        const t = li.textContent.trim();
+                        const c = t.indexOf(':');
+                        return c > 0 && c < 30 ? t.substring(0, c) : (t.length > 45 ? t.substring(0, 42) + '...' : t);
+                    }).join(' \u00b7 ');
+                }
+            }
+            bullets += `<div class="sl-bullet">
+                <div class="sl-bullet-marker">${bi + 1}</div>
+                <div>
+                    <div class="sl-bullet-title">${this.escHtml(title)}</div>
+                    ${desc ? '<div class="sl-bullet-desc">' + this.escHtml(desc) + '</div>' : ''}
+                </div>
+            </div>`;
+        });
+        const calloutEl = root.querySelector('.info-box, .warning-box');
+        let callout = '';
+        if (calloutEl) {
+            const isWarn = calloutEl.classList.contains('warning-box');
+            const txt = this.truncText(calloutEl.textContent, 130);
+            callout = `<div class="sl-callout ${isWarn ? 'sl-callout-warn' : 'sl-callout-info'}">
+                <span>${this.escHtml(txt)}</span>
+            </div>`;
+        }
         return `<div class="sl sl-concept">
-            <div class="sl-header"><span class="sl-badge">${idx + 1}\uac15</span> \uac1c\ub150 \uc124\uba85</div>
-            <div class="sl-concept-body">${lec.content}</div>
+            <h2 class="sl-slide-title"><span class="sl-badge">${idx + 1}\uac15</span> ${this.escHtml(lec.title)}</h2>
+            <div class="sl-bullet-list">${bullets}</div>
+            ${callout}
         </div>`;
     }
 
@@ -598,7 +637,7 @@ class SlideShow {
         const lec = lectures[idx];
         const highlighted = this.app.highlightC(lec.code.trim());
         let html = `<div class="sl sl-code">
-            <div class="sl-header"><span class="sl-badge">${idx + 1}\uac15</span> \uc608\uc81c \ucf54\ub4dc</div>
+            <h2 class="sl-slide-title"><span class="sl-badge">${idx + 1}\uac15</span> \uc608\uc81c \ucf54\ub4dc</h2>
             <div class="sl-code-wrapper">
                 <pre class="sl-code-block"><code>${highlighted}</code></pre>`;
         if (lec.output) {
@@ -615,7 +654,7 @@ class SlideShow {
         const lec = lectures[idx];
         const memHTML = StudyPointerApp.buildMemoryHTML(lec.memory);
         return `<div class="sl sl-memory">
-            <div class="sl-header"><span class="sl-badge">${idx + 1}\uac15</span> \uba54\ubaa8\ub9ac \ub9f5</div>
+            <h2 class="sl-slide-title"><span class="sl-badge">${idx + 1}\uac15</span> \uba54\ubaa8\ub9ac \ub9f5</h2>
             <div class="sl-memory-body">${memHTML}</div>
         </div>`;
     }
@@ -624,7 +663,7 @@ class SlideShow {
         const lec = lectures[idx];
         const items = lec.keyPoints.map(p => `<li>${p}</li>`).join('');
         return `<div class="sl sl-keypoints">
-            <div class="sl-header"><span class="sl-badge">${idx + 1}\uac15</span> \ud575\uc2ec \ud3ec\uc778\ud2b8</div>
+            <h2 class="sl-slide-title"><span class="sl-badge">${idx + 1}\uac15</span> \ud575\uc2ec \ud3ec\uc778\ud2b8</h2>
             <ul class="sl-kp-list">${items}</ul>
         </div>`;
     }
@@ -637,9 +676,18 @@ class SlideShow {
         </div>`;
     }
 
+    truncText(text, max) {
+        text = text.trim();
+        const m = text.match(/^(.+?[.!?])\s/);
+        if (m && m[1].length <= max) return m[1];
+        if (text.length <= max) return text;
+        return text.substring(0, max - 3) + '...';
+    }
+
     escHtml(s) {
         return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     }
+
 }
 
 

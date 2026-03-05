@@ -456,22 +456,22 @@ int main() {
     int num = 42;
     int *ptr = &num;
 
-    printf("=== 역참조로 값 읽기 ===\n");
-    printf("num의 값:  %d\n", num);
-    printf("*ptr의 값: %d\n", *ptr);
-    printf("num == *ptr ? %s\n", (num == *ptr) ? "YES" : "NO");
+    printf("=== 역참조로 값 읽기 ===\\n");
+    printf("num의 값:  %d\\n", num);
+    printf("*ptr의 값: %d\\n", *ptr);
+    printf("num == *ptr ? %s\\n", (num == *ptr) ? "YES" : "NO");
 
-    printf("\n=== 역참조로 값 쓰기 ===\n");
-    printf("변경 전: num = %d\n", num);
+    printf("\\n=== 역참조로 값 쓰기 ===\\n");
+    printf("변경 전: num = %d\\n", num);
 
     *ptr = 100;    // 포인터를 통해 num의 값 변경!
 
-    printf("변경 후: num = %d\n", num);
-    printf("변경 후: *ptr = %d\n", *ptr);
+    printf("변경 후: num = %d\\n", num);
+    printf("변경 후: *ptr = %d\\n", *ptr);
 
-    printf("\n=== num을 직접 변경하면 *ptr도 변경 ===\n");
+    printf("\\n=== num을 직접 변경하면 *ptr도 변경 ===\\n");
     num = 999;
-    printf("num = %d, *ptr = %d\n", num, *ptr);
+    printf("num = %d, *ptr = %d\\n", num, *ptr);
 
     return 0;
 }`,
@@ -560,24 +560,24 @@ int main() {
     char  *cp = (char *)&num;
     void  *vp = &num;
 
-    printf("=== 같은 주소, 다른 해석 ===\n");
-    printf("주소: %p\n\n", (void *)&num);
+    printf("=== 같은 주소, 다른 해석 ===\\n");
+    printf("주소: %p\\n\\n", (void *)&num);
 
-    printf("int*로 읽기 (4바이트):  0x%X (%d)\n", *ip, *ip);
-    printf("char*로 읽기 (1바이트): 0x%X ('%c')\n",
+    printf("int*로 읽기 (4바이트):  0x%X (%d)\\n", *ip, *ip);
+    printf("char*로 읽기 (1바이트): 0x%X ('%c')\\n",
            (unsigned char)*cp, *cp);
 
-    printf("\n=== 각 바이트 확인 (리틀 엔디안) ===\n");
+    printf("\\n=== 각 바이트 확인 (리틀 엔디안) ===\\n");
     for (int i = 0; i < 4; i++) {
-        printf("주소 %p: 0x%02X ('%c')\n",
+        printf("주소 %p: 0x%02X ('%c')\\n",
                (void *)(cp + i),
                (unsigned char)*(cp + i),
                *(cp + i));
     }
 
-    printf("\n=== void 포인터 캐스팅 ===\n");
-    printf("void*를 int*로: %d\n", *(int *)vp);
-    printf("void*를 char*로: '%c'\n", *(char *)vp);
+    printf("\\n=== void 포인터 캐스팅 ===\\n");
+    printf("void*를 int*로: %d\\n", *(int *)vp);
+    printf("void*를 char*로: '%c'\\n", *(char *)vp);
 
     return 0;
 }`,
@@ -674,22 +674,22 @@ int main() {
     int *ip = arr;           // 배열의 첫 번째 요소를 가리킴
     char *cp = (char *)arr;  // 같은 주소를 char*로
 
-    printf("=== int* 포인터 연산 (4바이트씩 이동) ===\n");
-    printf("ip     = %p, *ip   = %d\n", (void *)ip, *ip);
-    printf("ip + 1 = %p, *(ip+1) = %d\n", (void *)(ip+1), *(ip+1));
-    printf("ip + 2 = %p, *(ip+2) = %d\n", (void *)(ip+2), *(ip+2));
-    printf("ip + 3 = %p, *(ip+3) = %d\n", (void *)(ip+3), *(ip+3));
+    printf("=== int* 포인터 연산 (4바이트씩 이동) ===\\n");
+    printf("ip     = %p, *ip   = %d\\n", (void *)ip, *ip);
+    printf("ip + 1 = %p, *(ip+1) = %d\\n", (void *)(ip+1), *(ip+1));
+    printf("ip + 2 = %p, *(ip+2) = %d\\n", (void *)(ip+2), *(ip+2));
+    printf("ip + 3 = %p, *(ip+3) = %d\\n", (void *)(ip+3), *(ip+3));
 
-    printf("\n=== char* 포인터 연산 (1바이트씩 이동) ===\n");
-    printf("cp     = %p\n", (void *)cp);
-    printf("cp + 1 = %p\n", (void *)(cp+1));
-    printf("cp + 4 = %p (다음 int 위치)\n", (void *)(cp+4));
+    printf("\\n=== char* 포인터 연산 (1바이트씩 이동) ===\\n");
+    printf("cp     = %p\\n", (void *)cp);
+    printf("cp + 1 = %p\\n", (void *)(cp+1));
+    printf("cp + 4 = %p (다음 int 위치)\\n", (void *)(cp+4));
 
-    printf("\n=== 포인터 간 뺄셈 ===\n");
+    printf("\\n=== 포인터 간 뺄셈 ===\\n");
     int *start = &arr[0];
     int *end   = &arr[4];
-    printf("end - start = %td (요소 수)\n", end - start);
-    printf("주소 차이: %td 바이트\n",
+    printf("end - start = %td (요소 수)\\n", end - start);
+    printf("주소 차이: %td 바이트\\n",
            (char *)end - (char *)start);
 
     return 0;
@@ -788,25 +788,25 @@ end - start = 4 (요소 수)
 int main() {
     int arr[5] = {10, 20, 30, 40, 50};
 
-    printf("=== 배열 기본 정보 ===\n");
-    printf("배열 전체 크기: %zu 바이트\n", sizeof(arr));
-    printf("요소 하나 크기: %zu 바이트\n", sizeof(arr[0]));
-    printf("요소 개수:      %zu\n", sizeof(arr) / sizeof(arr[0]));
+    printf("=== 배열 기본 정보 ===\\n");
+    printf("배열 전체 크기: %zu 바이트\\n", sizeof(arr));
+    printf("요소 하나 크기: %zu 바이트\\n", sizeof(arr[0]));
+    printf("요소 개수:      %zu\\n", sizeof(arr) / sizeof(arr[0]));
 
-    printf("\n=== 배열명과 첫 번째 요소 주소 ===\n");
-    printf("arr      = %p\n", (void *)arr);
-    printf("&arr[0]  = %p\n", (void *)&arr[0]);
-    printf("동일한가? %s\n", (arr == &arr[0]) ? "YES" : "NO");
+    printf("\\n=== 배열명과 첫 번째 요소 주소 ===\\n");
+    printf("arr      = %p\\n", (void *)arr);
+    printf("&arr[0]  = %p\\n", (void *)&arr[0]);
+    printf("동일한가? %s\\n", (arr == &arr[0]) ? "YES" : "NO");
 
-    printf("\n=== 각 요소의 주소와 값 ===\n");
+    printf("\\n=== 각 요소의 주소와 값 ===\\n");
     for (int i = 0; i < 5; i++) {
-        printf("arr[%d]: 주소 = %p, 값 = %d\n",
+        printf("arr[%d]: 주소 = %p, 값 = %d\\n",
                i, (void *)&arr[i], arr[i]);
     }
 
-    printf("\n=== 주소 간격 확인 ===\n");
+    printf("\\n=== 주소 간격 확인 ===\\n");
     for (int i = 0; i < 4; i++) {
-        printf("&arr[%d] - &arr[%d] = %td 바이트\n",
+        printf("&arr[%d] - &arr[%d] = %td 바이트\\n",
                i+1, i,
                (char *)&arr[i+1] - (char *)&arr[i]);
     }
@@ -903,28 +903,28 @@ int main() {
     int arr[5] = {10, 20, 30, 40, 50};
     int *ptr = arr;  // ptr = &arr[0]
 
-    printf("=== arr[i] vs *(arr+i) 동치 관계 ===\n");
+    printf("=== arr[i] vs *(arr+i) 동치 관계 ===\\n");
     for (int i = 0; i < 5; i++) {
-        printf("arr[%d] = %d,  *(arr+%d) = %d,  *(ptr+%d) = %d\n",
+        printf("arr[%d] = %d,  *(arr+%d) = %d,  *(ptr+%d) = %d\\n",
                i, arr[i], i, *(arr+i), i, *(ptr+i));
     }
 
-    printf("\n=== 포인터로 배열 순회 ===\n");
+    printf("\\n=== 포인터로 배열 순회 ===\\n");
     int *p = arr;
     for (int i = 0; i < 5; i++) {
-        printf("*p = %d (주소: %p)\n", *p, (void *)p);
+        printf("*p = %d (주소: %p)\\n", *p, (void *)p);
         p++;  // 다음 요소로 이동
     }
 
-    printf("\n=== sizeof 차이 ===\n");
-    printf("sizeof(arr) = %zu (배열 전체)\n", sizeof(arr));
-    printf("sizeof(ptr) = %zu (포인터 크기)\n", sizeof(ptr));
+    printf("\\n=== sizeof 차이 ===\\n");
+    printf("sizeof(arr) = %zu (배열 전체)\\n", sizeof(arr));
+    printf("sizeof(ptr) = %zu (포인터 크기)\\n", sizeof(ptr));
 
-    printf("\n=== 주소 비교 ===\n");
-    printf("arr    = %p\n", (void *)arr);
-    printf("&arr   = %p\n", (void *)&arr);
-    printf("ptr    = %p\n", (void *)ptr);
-    printf("&ptr   = %p\n", (void *)&ptr);
+    printf("\\n=== 주소 비교 ===\\n");
+    printf("arr    = %p\\n", (void *)arr);
+    printf("&arr   = %p\\n", (void *)&arr);
+    printf("ptr    = %p\\n", (void *)ptr);
+    printf("&ptr   = %p\\n", (void *)&ptr);
 
     return 0;
 }`,
@@ -1023,32 +1023,32 @@ int main() {
     char str1[] = "Hello";     // 스택에 배열 생성 (수정 가능)
     char *str2  = "World";     // 데이터 영역의 리터럴 (수정 불가)
 
-    printf("=== char 배열 (str1) ===\n");
-    printf("내용: %s\n", str1);
-    printf("주소: %p (스택 영역)\n", (void *)str1);
-    printf("크기: %zu 바이트 (null 포함)\n", sizeof(str1));
+    printf("=== char 배열 (str1) ===\\n");
+    printf("내용: %s\\n", str1);
+    printf("주소: %p (스택 영역)\\n", (void *)str1);
+    printf("크기: %zu 바이트 (null 포함)\\n", sizeof(str1));
 
-    printf("\n=== char 포인터 (str2) ===\n");
-    printf("내용: %s\n", str2);
-    printf("가리키는 주소: %p (데이터 영역)\n", (void *)str2);
-    printf("포인터 크기:   %zu 바이트\n", sizeof(str2));
+    printf("\\n=== char 포인터 (str2) ===\\n");
+    printf("내용: %s\\n", str2);
+    printf("가리키는 주소: %p (데이터 영역)\\n", (void *)str2);
+    printf("포인터 크기:   %zu 바이트\\n", sizeof(str2));
 
     // str1은 수정 가능
     str1[0] = 'h';
-    printf("\n=== str1 수정 후 ===\n");
-    printf("str1 = %s (수정 성공!)\n", str1);
+    printf("\\n=== str1 수정 후 ===\\n");
+    printf("str1 = %s (수정 성공!)\\n", str1);
 
     // str2는 다른 리터럴을 가리킬 수 있음
     str2 = "C언어";
-    printf("str2 = %s (다른 리터럴 가리킴)\n", str2);
+    printf("str2 = %s (다른 리터럴 가리킴)\\n", str2);
 
-    printf("\n=== 포인터로 문자열 순회 ===\n");
+    printf("\\n=== 포인터로 문자열 순회 ===\\n");
     char *p = str1;
     while (*p != '\0') {
         printf("'%c' (0x%02X) ", *p, (unsigned char)*p);
         p++;
     }
-    printf("'\0' (0x00)\n");
+    printf("'\0' (0x00)\\n");
 
     return 0;
 }`,
