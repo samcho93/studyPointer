@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyPointer - C언어 포인터 완전정복</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h1 class="logo">
+                    <span class="logo-icon">&#9654;</span>
+                    <span>Study<strong>Pointer</strong></span>
+                </h1>
+                <p class="subtitle">C언어 포인터 완전정복</p>
+                <p class="subtitle-small">C++ 포인터를 위한 예비 과정</p>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar"></div>
+                <span class="progress-text" id="progressText">0 / 20 완료</span>
+            </div>
+            <nav class="lecture-nav" id="lectureNav">
+                <!-- Populated by JS -->
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content" id="mainContent">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <button class="menu-toggle" id="menuToggle" aria-label="메뉴 토글">
+                    <span></span><span></span><span></span>
+                </button>
+                <div class="lecture-title-bar">
+                    <span class="lecture-number" id="lectureNumber"></span>
+                    <h2 class="lecture-title" id="lectureTitle"></h2>
+                </div>
+                <div class="nav-buttons">
+                    <button class="nav-btn" id="prevBtn" title="이전 강좌">&#9664; 이전</button>
+                    <button class="nav-btn" id="nextBtn" title="다음 강좌">다음 &#9654;</button>
+                </div>
+            </header>
+
+            <!-- Lecture Content -->
+            <div class="content-area" id="contentArea">
+                <!-- Welcome Screen -->
+                <div class="welcome-screen" id="welcomeScreen">
+                    <div class="welcome-hero">
+                        <div class="welcome-icon">*ptr</div>
+                        <h2>C언어 포인터 완전정복</h2>
+                        <p>64비트 시스템 기반 메모리 시각화와 함께 배우는 포인터</p>
+                        <p class="welcome-desc">변수, 포인터, 배열, 동적 메모리, 함수 포인터까지<br>20개 강좌로 완벽하게 마스터하세요.</p>
+                        <button class="start-btn" id="startBtn">첫 번째 강좌 시작하기 &#9654;</button>
+                    </div>
+                    <div class="welcome-features">
+                        <div class="feature-card">
+                            <div class="feature-icon">&#128202;</div>
+                            <h3>메모리 시각화</h3>
+                            <p>모든 강좌에 메모리 맵 포함</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">&#128187;</div>
+                            <h3>실전 예제</h3>
+                            <p>강좌마다 실행 가능한 C 코드</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">&#127919;</div>
+                            <h3>단계별 학습</h3>
+                            <p>난이도 순 20개 강좌 구성</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lecture Display -->
+                <div class="lecture-display" id="lectureDisplay" style="display:none;">
+                    <div class="lecture-content-wrapper">
+                        <!-- Concept Section -->
+                        <section class="section concept-section" id="conceptSection">
+                        </section>
+
+                        <!-- Code Example Section -->
+                        <section class="section code-section">
+                            <h3 class="section-title">
+                                <span class="section-icon">&#128187;</span> 예제 코드
+                            </h3>
+                            <div class="code-container">
+                                <div class="code-header">
+                                    <span class="code-lang">C</span>
+                                    <button class="copy-btn" id="copyBtn" title="코드 복사">복사</button>
+                                </div>
+                                <pre class="code-block"><code id="codeBlock"></code></pre>
+                            </div>
+                            <div class="output-container" id="outputContainer">
+                                <h4 class="output-title">실행 결과:</h4>
+                                <pre class="output-block" id="outputBlock"></pre>
+                            </div>
+                        </section>
+
+                        <!-- Memory Visualization Section -->
+                        <section class="section memory-section">
+                            <h3 class="section-title">
+                                <span class="section-icon">&#128202;</span> 메모리 맵 시각화
+                            </h3>
+                            <div class="memory-viz-container" id="memoryViz">
+                                <!-- Rendered by JS -->
+                            </div>
+                            <div class="memory-legend" id="memoryLegend">
+                            </div>
+                        </section>
+
+                        <!-- Key Points Section -->
+                        <section class="section keypoints-section">
+                            <h3 class="section-title">
+                                <span class="section-icon">&#128161;</span> 핵심 포인트
+                            </h3>
+                            <ul class="keypoints-list" id="keypointsList">
+                            </ul>
+                        </section>
+                    </div>
+
+                    <!-- Bottom Navigation -->
+                    <div class="bottom-nav">
+                        <button class="bottom-nav-btn" id="bottomPrevBtn">&#9664; 이전 강좌</button>
+                        <span class="lecture-indicator" id="lectureIndicator"></span>
+                        <button class="bottom-nav-btn primary" id="bottomNextBtn">다음 강좌 &#9654;</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="lectures.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
