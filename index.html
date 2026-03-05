@@ -22,9 +22,7 @@
                 <div class="progress-bar" id="progressBar"></div>
                 <span class="progress-text" id="progressText">0 / 20 완료</span>
             </div>
-            <nav class="lecture-nav" id="lectureNav">
-                <!-- Populated by JS -->
-            </nav>
+            <nav class="lecture-nav" id="lectureNav"></nav>
         </aside>
 
         <!-- Main Content -->
@@ -39,6 +37,7 @@
                     <h2 class="lecture-title" id="lectureTitle"></h2>
                 </div>
                 <div class="nav-buttons">
+                    <button class="nav-btn slide-btn" id="lecSlideshowBtn" title="슬라이드 보기">&#9654; 슬라이드</button>
                     <button class="nav-btn" id="prevBtn" title="이전 강좌">&#9664; 이전</button>
                     <button class="nav-btn" id="nextBtn" title="다음 강좌">다음 &#9654;</button>
                 </div>
@@ -53,8 +52,10 @@
                         <h2>C언어 포인터 완전정복</h2>
                         <p>64비트 시스템 기반 메모리 시각화와 함께 배우는 포인터</p>
                         <p class="welcome-desc">변수, 포인터, 배열, 동적 메모리, 함수 포인터까지<br>20개 강좌로 완벽하게 마스터하세요.</p>
-                        <button class="start-btn" id="startBtn">첫 번째 강좌 시작하기 &#9654;</button>
-                        <a href="C%EC%96%B8%EC%96%B4_%ED%8F%AC%EC%9D%B8%ED%84%B0_%EC%99%84%EC%A0%84%EC%A0%95%EB%B3%B5.pptx" download class="ppt-download-btn" title="PPT 강의자료 다운로드">&#128196; PPT 강의자료 다운로드 (103슬라이드)</a>
+                        <div class="welcome-buttons">
+                            <button class="start-btn" id="startBtn">첫 번째 강좌 시작하기 &#9654;</button>
+                            <button class="slideshow-start-btn" id="slideshowBtn">&#9654; 슬라이드로 전체 보기 (102슬라이드)</button>
+                        </div>
                     </div>
                     <div class="welcome-features">
                         <div class="feature-card">
@@ -78,15 +79,9 @@
                 <!-- Lecture Display -->
                 <div class="lecture-display" id="lectureDisplay" style="display:none;">
                     <div class="lecture-content-wrapper">
-                        <!-- Concept Section -->
-                        <section class="section concept-section" id="conceptSection">
-                        </section>
-
-                        <!-- Code Example Section -->
+                        <section class="section concept-section" id="conceptSection"></section>
                         <section class="section code-section">
-                            <h3 class="section-title">
-                                <span class="section-icon">&#128187;</span> 예제 코드
-                            </h3>
+                            <h3 class="section-title"><span class="section-icon">&#128187;</span> 예제 코드</h3>
                             <div class="code-container">
                                 <div class="code-header">
                                     <span class="code-lang">C</span>
@@ -99,30 +94,16 @@
                                 <pre class="output-block" id="outputBlock"></pre>
                             </div>
                         </section>
-
-                        <!-- Memory Visualization Section -->
                         <section class="section memory-section">
-                            <h3 class="section-title">
-                                <span class="section-icon">&#128202;</span> 메모리 맵 시각화
-                            </h3>
-                            <div class="memory-viz-container" id="memoryViz">
-                                <!-- Rendered by JS -->
-                            </div>
-                            <div class="memory-legend" id="memoryLegend">
-                            </div>
+                            <h3 class="section-title"><span class="section-icon">&#128202;</span> 메모리 맵 시각화</h3>
+                            <div class="memory-viz-container" id="memoryViz"></div>
+                            <div class="memory-legend" id="memoryLegend"></div>
                         </section>
-
-                        <!-- Key Points Section -->
                         <section class="section keypoints-section">
-                            <h3 class="section-title">
-                                <span class="section-icon">&#128161;</span> 핵심 포인트
-                            </h3>
-                            <ul class="keypoints-list" id="keypointsList">
-                            </ul>
+                            <h3 class="section-title"><span class="section-icon">&#128161;</span> 핵심 포인트</h3>
+                            <ul class="keypoints-list" id="keypointsList"></ul>
                         </section>
                     </div>
-
-                    <!-- Bottom Navigation -->
                     <div class="bottom-nav">
                         <button class="bottom-nav-btn" id="bottomPrevBtn">&#9664; 이전 강좌</button>
                         <span class="lecture-indicator" id="lectureIndicator"></span>
@@ -131,6 +112,25 @@
                 </div>
             </div>
         </main>
+    </div>
+
+    <!-- ===== Slideshow Overlay ===== -->
+    <div class="slideshow-overlay" id="slideshowOverlay" style="display:none;">
+        <div class="slideshow-topbar">
+            <span class="slideshow-lec-label" id="slideLecLabel"></span>
+            <button class="slideshow-close-btn" id="slideClose">&#10005; 닫기</button>
+        </div>
+        <div class="slideshow-body" id="slideContent"></div>
+        <div class="slideshow-bottombar">
+            <button class="slideshow-nav-btn" id="slidePrev">&#9664;</button>
+            <div class="slideshow-progress">
+                <span class="slideshow-counter" id="slideCounter">1 / 102</span>
+                <div class="slideshow-progress-track">
+                    <div class="slideshow-progress-fill" id="slideProgressFill"></div>
+                </div>
+            </div>
+            <button class="slideshow-nav-btn" id="slideNext">&#9654;</button>
+        </div>
     </div>
 
     <script src="lectures.js"></script>
