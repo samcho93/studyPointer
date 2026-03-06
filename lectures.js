@@ -234,7 +234,7 @@ d의 주소: 0x7FFE2A3C18C0`,
             <p>다음 코드를 살펴봅시다:</p>
             <ul>
                 <li><code>int num = 42;</code> → 스택에 4바이트를 확보하고 42를 저장</li>
-                <li><code>int *ptr = &num;</code> → 스택에 8바이트를 확보하고 num의 주소를 저장</li>
+                <li><code>int *ptr = &amp;num;</code> → 스택에 8바이트를 확보하고 num의 주소를 저장</li>
             </ul>
             <p>이제 <code>ptr</code>에는 <code>num</code>의 메모리 주소가 들어있습니다. <code>ptr</code>을 통해 <code>num</code>에 간접적으로 접근할 수 있게 됩니다.</p>
 
@@ -321,7 +321,7 @@ ptr == &num ? YES`,
             <h4>포인터 초기화</h4>
             <p>포인터를 선언할 때는 반드시 초기화해야 합니다. 초기화 방법은 세 가지가 있습니다:</p>
             <ul>
-                <li><strong>변수의 주소로 초기화:</strong> <code>int *ptr = &num;</code> — 가장 일반적인 방법</li>
+                <li><strong>변수의 주소로 초기화:</strong> <code>int *ptr = &amp;num;</code> — 가장 일반적인 방법</li>
                 <li><strong>NULL로 초기화:</strong> <code>int *ptr = NULL;</code> — 아직 가리킬 대상이 없을 때</li>
                 <li><strong>동적 할당 주소로 초기화:</strong> <code>int *ptr = malloc(sizeof(int));</code></li>
             </ul>
@@ -542,7 +542,7 @@ num = 999, *ptr = 999`,
             <h4>void 포인터 (void*)</h4>
             <p><code>void*</code>는 "자료형이 지정되지 않은 범용 포인터"입니다. 어떤 자료형의 주소든 저장할 수 있지만, 직접 역참조할 수는 없습니다. 역참조하려면 적절한 자료형으로 캐스팅해야 합니다.</p>
             <ul>
-                <li><code>void *vp = &num;</code> — 모든 자료형의 주소 저장 가능</li>
+                <li><code>void *vp = &amp;num;</code> — 모든 자료형의 주소 저장 가능</li>
                 <li><code>*vp = 10;</code> — 컴파일 에러! void*는 직접 역참조 불가</li>
                 <li><code>*(int *)vp = 10;</code> — int*로 캐스팅 후 역참조 가능</li>
             </ul>
@@ -759,11 +759,11 @@ end - start = 4 (요소 수)
             <p>배열은 <strong>같은 자료형의 데이터를 연속된 메모리 공간</strong>에 저장하는 자료구조입니다. <code>int arr[5];</code>를 선언하면 메모리에서 <code>5 * sizeof(int) = 20바이트</code>의 연속된 공간이 확보됩니다. 배열의 요소들은 반드시 물리적으로 인접한 메모리에 위치합니다.</p>
 
             <h4>배열명의 의미</h4>
-            <p>C언어에서 배열명은 <strong>배열의 첫 번째 요소의 주소</strong>를 나타냅니다. 즉, <code>arr</code>과 <code>&arr[0]</code>은 동일한 값을 가집니다. 이것은 매우 중요한 특성으로, 배열명이 사실상 포인터처럼 동작하는 기반이 됩니다.</p>
+            <p>C언어에서 배열명은 <strong>배열의 첫 번째 요소의 주소</strong>를 나타냅니다. 즉, <code>arr</code>과 <code>&amp;arr[0]</code>은 동일한 값을 가집니다. 이것은 매우 중요한 특성으로, 배열명이 사실상 포인터처럼 동작하는 기반이 됩니다.</p>
             <ul>
-                <li><code>arr</code> == <code>&arr[0]</code> → 첫 번째 요소의 주소</li>
-                <li><code>arr + 1</code> == <code>&arr[1]</code> → 두 번째 요소의 주소</li>
-                <li><code>arr + i</code> == <code>&arr[i]</code> → i번째 요소의 주소</li>
+                <li><code>arr</code> == <code>&amp;arr[0]</code> → 첫 번째 요소의 주소</li>
+                <li><code>arr + 1</code> == <code>&amp;arr[1]</code> → 두 번째 요소의 주소</li>
+                <li><code>arr + i</code> == <code>&amp;arr[i]</code> → i번째 요소의 주소</li>
             </ul>
 
             <h4>배열 인덱스와 주소 계산</h4>
@@ -892,7 +892,7 @@ arr[4]: 주소 = 0x7FFE2A3C18A0, 값 = 50
             <ul>
                 <li><code>sizeof(arr)</code>은 배열 전체 크기를 반환하지만, <code>sizeof(ptr)</code>은 포인터 크기(8바이트)만 반환합니다</li>
                 <li>배열명은 상수이므로 값을 변경할 수 없지만, 포인터 변수는 다른 주소를 대입할 수 있습니다</li>
-                <li><code>&arr</code>은 배열 전체의 주소이고, <code>&ptr</code>은 포인터 변수 자체의 주소입니다</li>
+                <li><code>&amp;arr</code>은 배열 전체의 주소이고, <code>&amp;ptr</code>은 포인터 변수 자체의 주소입니다</li>
             </ul>
 
             <div class="warning-box">배열을 함수 매개변수로 전달하면 <code>int arr[]</code>은 <code>int *arr</code>과 동일하게 취급됩니다. 이때 배열의 크기 정보가 사라지므로 주의하세요.</div>
