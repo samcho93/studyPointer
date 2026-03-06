@@ -4,7 +4,7 @@
     {
       "name": "studypointer",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "8080", "--directory", "D:/Work/Web/StudyPointer"],
+      "runtimeArgs": ["-m", "http.server", "8080", "--bind", "0.0.0.0", "--directory", "D:/Work/Web/StudyPointer"],
       "port": 8080
     }
   ]
